@@ -1,105 +1,48 @@
 import { Router } from 'express';
-import { db } from '../db/store';
+import { supabase } from '../db/supabase';
 import { AuthenticatedRequest, requirePermission } from '../db/rls';
-import { Branch, Warehouse } from '../types';
 
 export const branchesRouter = Router();
 
-// GET all branches
-branchesRouter.get('/', requirePermission('branches', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const branches = db.getBranches(tenantId, req.user?.assignedBranchIds);
-  res.json({ branches });
+branchesRouter.get('/', requirePermission('branches','view'), async (req: AuthenticatedRequest, res) => {
+  const organizationId = req.tenant?.id;
+  let q = supabase.from('branches').select('*').order('name');
+  if (organizationId) q = q.eq('organization_id', organizationId);
+  const { data, error } = await q;
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ branches: data || [] });
 });
 
-// Create Branch
-branchesRouter.post('/', requirePermission('branches', 'create'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const state = db.getState();
-  const { name, code, address, phone } = req.body;
-
-  if (!name || !code) {
-    return res.status(400).json({ error: 'اسم الفرع وكوده مطلوبان' });
-  }
-
-  const branchCount = state.branches.filter(b => b.tenantId === tenantId).length + 1;
-  const branch: Branch = {
-    id: `br_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    tenantId,
-    name,
-    code: code || `BR-${branchCount.toString().padStart(2, '0')}`,
-    address,
-    phone,
-    isMain: false,
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-
-  state.branches.push(branch);
-
-  // Auto-create default warehouse for this branch
-  const warehouse: Warehouse = {
-    id: `wh_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    tenantId,
-    branchId: branch.id,
-    name: `مستودع ${branch.name}`,
-    code: `WH-${branch.code}`,
-    isDefault: true,
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-  state.warehouses.push(warehouse);
-
-  db.logAudit({
-    tenantId,
-    branchId: branch.id,
-    userId: req.user?.id || 'sys',
-    userName: req.user?.fullName || 'Manager',
-    userRole: req.userRole?.name || 'Admin',
-    action: 'branch.create',
-    module: 'branches',
-    entityType: 'branch',
-    entityId: branch.id,
-    description: `إنشاء فرع جديد: [${branch.name}] مع مستودعه الافتراضي`,
-    status: 'success'
-  });
-
-  db.persist();
-
+branchesRouter.post('/', requirePermission('branches','create'), async (req: AuthenticatedRequest, res) => {
+  const { name, nameEn, address, phone } = req.body;
+  if (!name) return res.status(400).json({ error: 'اسم الفرع مطلوب' });
+  const { data: branch, error } = await supabase.from('branches').insert({
+    name, name_en: nameEn || null, address: address || null, phone: phone || null,
+    organization_id: req.tenant?.id, is_active: true
+  }).select().single();
+  if (error) return res.status(500).json({ error: error.message });
+  const { data: warehouse, error: whError } = await supabase.from('warehouses').insert({
+    name: 'مخزن ' + name, branch_id: branch.id, is_active: true
+  }).select().single();
+  if (whError) return res.status(500).json({ error: whError.message });
   res.status(201).json({ success: true, branch, warehouse });
 });
 
-// Warehouses list
-branchesRouter.get('/warehouses', requirePermission('warehouses', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const { branchId } = req.query;
-  const warehouses = db.getWarehouses(tenantId, branchId ? [branchId as string] : req.user?.assignedBranchIds);
-  res.json({ warehouses });
+branchesRouter.get('/warehouses', requirePermission('warehouses','view'), async (req: AuthenticatedRequest, res) => {
+  let q = supabase.from('warehouses').select('*').order('name');
+  const branchId = req.query.branchId || req.activeBranchId;
+  if (branchId) q = q.eq('branch_id', branchId);
+  const { data, error } = await q;
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ warehouses: data || [] });
 });
 
-// Create Warehouse
-branchesRouter.post('/warehouses', requirePermission('warehouses', 'create'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const state = db.getState();
-  const { branchId, name, code, isDefault } = req.body;
-
-  if (!name || !branchId) {
-    return res.status(400).json({ error: 'اسم المستودع والفرع التابع له حقول مطلوبة' });
-  }
-
-  const warehouse: Warehouse = {
-    id: `wh_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    tenantId,
-    branchId,
-    name,
-    code: code || `WH-${Date.now().toString().slice(-4)}`,
-    isDefault: Boolean(isDefault),
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-
-  state.warehouses.push(warehouse);
-  db.persist();
-
-  res.status(201).json({ success: true, warehouse });
+branchesRouter.post('/warehouses', requirePermission('warehouses','create'), async (req: AuthenticatedRequest, res) => {
+  const { name, branchId, address, warehouseType } = req.body;
+  if (!name || !branchId) return res.status(400).json({ error: 'اسم المخزن والفرع مطلوبان' });
+  const { data, error } = await supabase.from('warehouses').insert({
+    name, branch_id: branchId, address: address || null, warehouse_type: warehouseType || 'general', is_active: true
+  }).select().single();
+  if (error) return res.status(500).json({ error: error.message });
+  res.status(201).json({ success: true, warehouse: data });
 });
