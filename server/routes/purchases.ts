@@ -1,249 +1,34 @@
 import { Router } from 'express';
-import { db } from '../db/store';
+import { supabase } from '../db/supabase';
 import { AuthenticatedRequest, requirePermission } from '../db/rls';
-import { Supplier, PurchaseInvoice, PurchaseInvoiceItem, InventoryMovement } from '../types';
 
 export const purchasesRouter = Router();
 
-// Suppliers list
-purchasesRouter.get('/suppliers', requirePermission('suppliers', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const suppliers = db.getState().suppliers.filter(s => s.tenantId === tenantId);
-  res.json({ suppliers });
+purchasesRouter.get('/suppliers', requirePermission('suppliers','view'), async (req: AuthenticatedRequest,res)=>{
+  let q=supabase.from('suppliers').select('*').order('name'); if(req.activeBranchId)q=q.eq('branch_id',req.activeBranchId);
+  const {data,error}=await q;if(error)return res.status(500).json({error:error.message});res.json({suppliers:data||[]});
 });
 
-// Create Supplier
-purchasesRouter.post('/suppliers', requirePermission('suppliers', 'create'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const state = db.getState();
-  const { name, companyName, taxNumber, phone, email, address } = req.body;
-
-  if (!name || !phone) {
-    return res.status(400).json({ error: 'اسم المورد ورقم الهاتف حقول مطلوبة' });
-  }
-
-  const supplier: Supplier = {
-    id: `sup_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    tenantId,
-    name,
-    companyName,
-    taxNumber,
-    phone,
-    email,
-    address,
-    currentBalance: 0,
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-
-  state.suppliers.push(supplier);
-
-  db.logAudit({
-    tenantId,
-    userId: req.user?.id || 'sys',
-    userName: req.user?.fullName || 'Manager',
-    userRole: req.userRole?.name || 'Purchasing',
-    action: 'supplier.create',
-    module: 'suppliers',
-    entityType: 'supplier',
-    entityId: supplier.id,
-    description: `إضافة مورد جديد: [${supplier.name}]`,
-    status: 'success'
-  });
-
-  db.persist();
-
-  res.status(201).json({ success: true, supplier });
+purchasesRouter.post('/suppliers', requirePermission('suppliers','create'), async (req: AuthenticatedRequest,res)=>{
+  const b=req.body;if(!b.name)return res.status(400).json({error:'اسم المورد مطلوب'});
+  const {data,error}=await supabase.from('suppliers').insert({name:b.name,name_en:b.nameEn||null,phone:b.phone||null,email:b.email||null,address:b.address||null,tax_number:b.taxNumber||null,balance:0,notes:b.notes||null,branch_id:b.branchId||req.activeBranchId}).select().single();
+  if(error)return res.status(500).json({error:error.message});res.status(201).json({success:true,supplier:data});
 });
 
-// GET Purchase Invoices
-purchasesRouter.get('/invoices', requirePermission('purchases', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const { supplierId, branchId, status } = req.query;
-  let invoices = db.getState().purchaseInvoices.filter(p => p.tenantId === tenantId);
-
-  if (supplierId) invoices = invoices.filter(p => p.supplierId === supplierId);
-  if (branchId) invoices = invoices.filter(p => p.branchId === branchId);
-  if (status) invoices = invoices.filter(p => p.status === status);
-
-  res.json({ invoices });
+purchasesRouter.get('/invoices', requirePermission('purchases','view'), async (req: AuthenticatedRequest,res)=>{
+  let q=supabase.from('purchases').select('*, suppliers(name), purchase_items(*)').order('created_at',{ascending:false});
+  if(req.activeBranchId)q=q.eq('branch_id',req.activeBranchId);if(req.query.supplierId)q=q.eq('supplier_id',req.query.supplierId);if(req.query.status)q=q.eq('status',req.query.status);
+  const {data,error}=await q;if(error)return res.status(500).json({error:error.message});res.json({invoices:data||[]});
 });
 
-// Create Purchase Invoice (and receive into stock)
-purchasesRouter.post('/invoices', requirePermission('purchases', 'create'), (req: AuthenticatedRequest, res) => {
-  try {
-    const tenantId = req.tenant!.id;
-    const state = db.getState();
-    const {
-      supplierId,
-      supplierInvoiceNumber,
-      branchId,
-      warehouseId,
-      items,
-      paymentStatus,
-      paidAmount,
-      discountAmount,
-      notes,
-      autoReceive
-    } = req.body;
-
-    if (!supplierId || !items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ error: 'المورد والأصناف مطلوبة لإنشاء فاتورة الشراء' });
-    }
-
-    const supplier = state.suppliers.find(s => s.id === supplierId && s.tenantId === tenantId);
-    if (!supplier) {
-      return res.status(404).json({ error: 'المورد غير موجود' });
-    }
-
-    const targetBranchId = branchId || req.activeBranchId || db.getBranches(tenantId)[0]?.id;
-    const targetWarehouseId = warehouseId || db.getWarehouses(tenantId, [targetBranchId])[0]?.id;
-
-    const warehouse = state.warehouses.find(w => w.id === targetWarehouseId && w.tenantId === tenantId);
-    if (!warehouse) {
-      return res.status(404).json({ error: 'المستودع المحدد غير موجود' });
-    }
-
-    let subtotal = 0;
-    let totalTax = 0;
-
-    const purchaseItems: PurchaseInvoiceItem[] = items.map((it: any) => {
-      const prod = state.products.find(p => p.id === it.productId && p.tenantId === tenantId);
-      const qty = Number(it.quantity || 1);
-      const unitCost = Number(it.unitCost || prod?.costPrice || 0);
-      const itemSubtotal = qty * unitCost;
-      subtotal += itemSubtotal;
-
-      const taxRate = req.tenant!.settings.enableTax ? (it.taxRate ?? 15) : 0;
-      const taxAmount = (itemSubtotal * taxRate) / 100;
-      totalTax += taxAmount;
-
-      return {
-        id: `pitem_${Date.now()}_${Math.random().toString(36).substring(2, 5)}`,
-        productId: it.productId,
-        productName: prod?.name || it.productName || 'صنف',
-        productSku: prod?.sku || '',
-        unitSymbol: prod?.unitSymbol || it.unitSymbol || 'حبة',
-        quantity: qty,
-        unitCost,
-        subtotal: itemSubtotal,
-        taxRate,
-        taxAmount,
-        total: itemSubtotal + taxAmount
-      };
-    });
-
-    const discount = Number(discountAmount || 0);
-    const grandTotal = subtotal + totalTax - discount;
-    const actualPaid = Number(paidAmount || (paymentStatus === 'paid' ? grandTotal : 0));
-
-    const count = state.purchaseInvoices.filter(p => p.tenantId === tenantId).length + 1;
-    const invoiceNumber = `PUR-${new Date().getFullYear()}-${count.toString().padStart(4, '0')}`;
-
-    const isReceived = autoReceive !== false;
-
-    const invoice: PurchaseInvoice = {
-      id: `pur_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-      tenantId,
-      invoiceNumber,
-      supplierInvoiceNumber,
-      supplierId: supplier.id,
-      supplierName: supplier.name,
-      branchId: targetBranchId,
-      warehouseId: targetWarehouseId,
-      status: isReceived ? 'received' : 'draft',
-      paymentStatus: paymentStatus || (actualPaid >= grandTotal ? 'paid' : actualPaid > 0 ? 'partial' : 'unpaid'),
-      subtotal,
-      taxAmount: totalTax,
-      discountAmount: discount,
-      totalAmount: grandTotal,
-      paidAmount: actualPaid,
-      items: purchaseItems,
-      notes,
-      receivedAt: isReceived ? new Date().toISOString() : undefined,
-      createdByUserId: req.user?.id || 'sys',
-      createdAt: new Date().toISOString()
-    };
-
-    state.purchaseInvoices.unshift(invoice);
-
-    // Apply receiving to stock & calculate moving weighted average cost
-    if (isReceived) {
-      for (const item of purchaseItems) {
-        const prod = state.products.find(p => p.id === item.productId && p.tenantId === tenantId);
-        const currentStock = db.getProductStock(tenantId, item.productId, targetWarehouseId);
-        const currentQty = currentStock ? currentStock.quantity : 0;
-        const currentAvgCost = currentStock?.averageUnitCost || prod?.costPrice || item.unitCost;
-
-        const newQty = currentQty + item.quantity;
-        // Moving weighted average cost formula:
-        let newWeightedAvgCost = item.unitCost;
-        if (newQty > 0 && currentQty > 0) {
-          newWeightedAvgCost = ((currentQty * currentAvgCost) + (item.quantity * item.unitCost)) / newQty;
-        }
-
-        db.setProductStock(tenantId, item.productId, targetWarehouseId, newQty, newWeightedAvgCost);
-
-        // Also update product catalog default cost price if it was 0 or standard
-        if (prod) {
-          prod.costPrice = Number(newWeightedAvgCost.toFixed(2));
-          prod.updatedAt = new Date().toISOString();
-        }
-
-        state.inventoryMovements.unshift({
-          id: `mov_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-          tenantId,
-          branchId: targetBranchId,
-          warehouseId: targetWarehouseId,
-          productId: item.productId,
-          productName: item.productName,
-          productSku: item.productSku,
-          type: 'purchase_receive',
-          referenceType: 'purchase_invoice',
-          referenceId: invoice.id,
-          referenceNumber: invoice.invoiceNumber,
-          quantityChange: item.quantity,
-          quantityBefore: currentQty,
-          quantityAfter: newQty,
-          unitCost: item.unitCost,
-          totalCost: item.quantity * item.unitCost,
-          notes: `استلام مشتريات من المورد [${supplier.name}] فاتورة #${invoice.invoiceNumber}`,
-          performedByUserId: req.user?.id || 'sys',
-          performedByUserName: req.user?.fullName || 'Purchasing',
-          createdAt: new Date().toISOString()
-        });
-      }
-
-      // Update supplier debt if unpaid portion exists
-      const remainingUnpaid = grandTotal - actualPaid;
-      if (remainingUnpaid > 0) {
-        supplier.currentBalance += remainingUnpaid;
-      }
-    }
-
-    db.logAudit({
-      tenantId,
-      branchId: targetBranchId,
-      userId: req.user?.id || 'sys',
-      userName: req.user?.fullName || 'Purchasing',
-      userRole: req.userRole?.name || 'Purchasing',
-      action: 'purchase.create',
-      module: 'purchases',
-      entityType: 'purchase_invoice',
-      entityId: invoice.id,
-      entityNumber: invoice.invoiceNumber,
-      description: `فاتورة شراء #${invoice.invoiceNumber} من المورد [${supplier.name}] بإجمالي ${grandTotal.toFixed(2)}`,
-      status: 'success'
-    });
-
-    db.persist();
-
-    res.status(201).json({
-      success: true,
-      message: isReceived ? 'تم تسجيل الفاتورة واستلام المخزون وتحديث متوسط التكلفة بنجاح' : 'تم حفظ مسودة فاتورة الشراء',
-      invoice
-    });
-  } catch (err: any) {
-    res.status(500).json({ error: err.message || 'Error creating purchase invoice' });
-  }
+purchasesRouter.post('/invoices', requirePermission('purchases','create'), async (req: AuthenticatedRequest,res)=>{
+  const b=req.body,items=Array.isArray(b.items)?b.items:[];const branchId=b.branchId||req.activeBranchId;
+  if(!branchId||!b.warehouseId||!items.length)return res.status(400).json({error:'الفرع والمخزن والأصناف مطلوبة'});
+  const subtotal=items.reduce((s:any,i:any)=>s+Number(i.quantity)*Number(i.unitCost??i.cost??0),0);
+  const {data:purchase,error}=await supabase.from('purchases').insert({invoice_number:b.invoiceNumber||('PUR-'+Date.now()),supplier_id:b.supplierId||null,branch_id:branchId,warehouse_id:b.warehouseId,buyer_id:req.user?.id||null,subtotal,total:subtotal,paid_amount:Number(b.paidAmount||0),payment_method:b.paymentMethod||'cash',status:'received',notes:b.notes||null}).select().single();
+  if(error)return res.status(500).json({error:error.message});
+  const rows=items.map((i:any)=>({purchase_id:purchase.id,product_id:i.productId||null,raw_material_id:i.rawMaterialId||null,unit_name:i.unitName||'unit',quantity:Number(i.quantity),unit_cost:Number(i.unitCost??i.cost??0),total:Number(i.quantity)*Number(i.unitCost??i.cost??0),received_quantity:Number(i.quantity)}));
+  const {error:ie}=await supabase.from('purchase_items').insert(rows);if(ie)return res.status(500).json({error:ie.message});
+  for(const i of items){if(!i.productId)continue;const {data:inv}=await supabase.from('inventory').select('*').eq('product_id',i.productId).eq('warehouse_id',b.warehouseId).maybeSingle();const q=Number(i.quantity);if(inv)await supabase.from('inventory').update({quantity:Number(inv.quantity)+q,updated_at:new Date().toISOString()}).eq('id',inv.id);else await supabase.from('inventory').insert({product_id:i.productId,warehouse_id:b.warehouseId,branch_id:branchId,quantity:q});await supabase.from('inventory_movements').insert({product_id:i.productId,warehouse_id:b.warehouseId,branch_id:branchId,movement_type:'purchase',quantity:q,reference_id:purchase.id,notes:purchase.invoice_number});}
+  res.status(201).json({success:true,purchase});
 });
