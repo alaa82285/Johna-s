@@ -1,8 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import { db } from './server/db/store';
-import { seedInitialDataIfEmpty } from './server/db/seed';
+import { assertSupabaseConnection } from './server/db/supabase';
 import { authAndRlsMiddleware } from './server/db/rls';
 import { authRouter } from './server/routes/auth';
 import { posRouter } from './server/routes/pos';
@@ -20,8 +19,8 @@ import { settingsRouter } from './server/routes/settings';
 import { printersRouter } from './server/routes/printers';
 
 async function startServer() {
-  // 1. Initialize DB and seed demo data if empty
-  seedInitialDataIfEmpty();
+  // Supabase/PostgreSQL is mandatory. No local JSON database fallback.
+  await assertSupabaseConnection();
 
   const app = express();
   const PORT = 3000;
