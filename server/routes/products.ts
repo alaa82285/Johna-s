@@ -16,6 +16,14 @@ productsRouter.get('/', requirePermission('products','view'), async (req: Authen
   res.json({ products: data || [] });
 });
 
+productsRouter.get('/meta/categories', requirePermission('products','view'), async (req: AuthenticatedRequest, res) => {
+  let q=supabase.from('categories').select('*').order('name'); if(req.activeBranchId) q=q.eq('branch_id',req.activeBranchId);
+  const {data,error}=await q; if(error)return res.status(500).json({error:error.message}); res.json({categories:data||[]});
+});
+productsRouter.get('/meta/units', requirePermission('products','view'), async (_req, res) => {
+  const {data,error}=await supabase.from('units').select('*').order('name'); if(error)return res.status(500).json({error:error.message}); res.json({units:data||[]});
+});
+
 productsRouter.get('/:id', requirePermission('products','view'), async (req, res) => {
   const { data, error } = await supabase.from('products').select('*, categories(name)').eq('id', req.params.id).single();
   if (error) return res.status(404).json({ error: 'المنتج غير موجود' });
