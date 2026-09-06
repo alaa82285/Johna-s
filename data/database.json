@@ -1,0 +1,2504 @@
+{
+  "tenants": [
+    {
+      "id": "tenant_1788690044038_g41b",
+      "name": "مطعم بريميير جورميه",
+      "legalName": "مطعم بريميير جورميه المحدودة",
+      "taxNumber": "301294827100003",
+      "currency": "SAR",
+      "phone": "+966 50 123 4567",
+      "email": "admin@premier-pos.com",
+      "address": "المملكة العربية السعودية، الرياض",
+      "plan": "pro",
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z",
+      "settings": {
+        "defaultTaxRate": 15,
+        "enableTax": true,
+        "enableLoyalty": true,
+        "loyaltyPointsPerAmount": 1,
+        "loyaltyRedeemRate": 0.1,
+        "allowNegativeStock": false,
+        "defaultReceiptHeader": "أهلاً بكم في مطعم بريميير جورميه\nنسعد بخدمتكم دائماً",
+        "defaultReceiptFooter": "الرقم الضريبي: 301294827100003\nالأسعار شاملة ضريبة القيمة المضافة 15%",
+        "barcodePrefix": "PRM",
+        "language": "ar"
+      }
+    },
+    {
+      "id": "tenant_1788690119240_wddc",
+      "name": "شركة النجم المعزولة للتقنية (Tenant B)",
+      "legalName": "شركة النجم المعزولة للتقنية (Tenant B) المحدودة",
+      "taxNumber": "301294827100003",
+      "currency": "SAR",
+      "phone": "+966 50 123 4567",
+      "email": "isolation-test@isolated.com",
+      "address": "المملكة العربية السعودية، الرياض",
+      "plan": "pro",
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z",
+      "settings": {
+        "defaultTaxRate": 15,
+        "enableTax": true,
+        "enableLoyalty": true,
+        "loyaltyPointsPerAmount": 1,
+        "loyaltyRedeemRate": 0.1,
+        "allowNegativeStock": false,
+        "defaultReceiptHeader": "أهلاً بكم في شركة النجم المعزولة للتقنية (Tenant B)\nنسعد بخدمتكم دائماً",
+        "defaultReceiptFooter": "الرقم الضريبي: 301294827100003\nالأسعار شاملة ضريبة القيمة المضافة 15%",
+        "barcodePrefix": "PRM",
+        "language": "ar"
+      }
+    }
+  ],
+  "branches": [
+    {
+      "id": "br_main_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "الفرع الرئيسي - الرياض",
+      "code": "BR-01",
+      "address": "شارع التحلية، الرياض",
+      "phone": "+966 11 400 1111",
+      "isMain": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "br_sec_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "فرع النخيل مول",
+      "code": "BR-02",
+      "address": "النخيل مول، بوابة 4",
+      "phone": "+966 11 400 2222",
+      "isMain": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "br_main_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "الفرع الرئيسي - الرياض",
+      "code": "BR-01",
+      "address": "شارع التحلية، الرياض",
+      "phone": "+966 11 400 1111",
+      "isMain": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "br_sec_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "فرع النخيل مول",
+      "code": "BR-02",
+      "address": "النخيل مول، بوابة 4",
+      "phone": "+966 11 400 2222",
+      "isMain": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "warehouses": [
+    {
+      "id": "wh_main_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "name": "المستودع المركزي",
+      "code": "WH-MAIN",
+      "isDefault": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "wh_floor_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "name": "مخزن صالة البيع والمطبخ",
+      "code": "WH-FLOOR",
+      "isDefault": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "wh_sec_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_sec_tenant_1788690044038_g41b",
+      "name": "مستودع فرع النخيل",
+      "code": "WH-NAKHEEL",
+      "isDefault": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "wh_main_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "branchId": "br_main_tenant_1788690119240_wddc",
+      "name": "المستودع المركزي",
+      "code": "WH-MAIN",
+      "isDefault": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "wh_floor_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "branchId": "br_main_tenant_1788690119240_wddc",
+      "name": "مخزن صالة البيع والمطبخ",
+      "code": "WH-FLOOR",
+      "isDefault": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "wh_sec_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "branchId": "br_sec_tenant_1788690119240_wddc",
+      "name": "مستودع فرع النخيل",
+      "code": "WH-NAKHEEL",
+      "isDefault": true,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": "role_owner_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "Owner",
+      "description": "صلاحيات كاملة وغير محدودة للنظام",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "products": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "recipes": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "branches": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "warehouses": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "users": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "reports": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "audit_logs": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "settings": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "role_manager_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "General Manager",
+      "description": "إدارة العمليات والمخزون والمبيعات والموظفين",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "products": [
+          "view",
+          "create",
+          "edit",
+          "export"
+        ],
+        "recipes": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "approve"
+        ],
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "approve"
+        ],
+        "purchases": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "reports": [
+          "view",
+          "export",
+          "print"
+        ],
+        "audit_logs": [
+          "view"
+        ],
+        "users": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_cashier_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "Cashier",
+      "description": "شاشة البيع ونقاط البيع واستلام المبالغ والطباعة",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "print"
+        ],
+        "products": [
+          "view"
+        ],
+        "customers": [
+          "view",
+          "create"
+        ],
+        "reports": [
+          "view",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "role_warehouse_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "Warehouse Officer",
+      "description": "إدارة المخازن، التحويلات، الجرد، واستلام المشتريات",
+      "isSystem": true,
+      "permissions": {
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "approve"
+        ],
+        "products": [
+          "view"
+        ],
+        "recipes": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_kitchen_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "Kitchen / Production",
+      "description": "أوامر التصنيع وإعداد الوصفات واستهلاك المواد الخام",
+      "isSystem": true,
+      "permissions": {
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "recipes": [
+          "view"
+        ],
+        "inventory": [
+          "view"
+        ],
+        "products": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_accountant_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "Accountant",
+      "description": "التقارير المالية وحسابات العملاء والموردين",
+      "isSystem": true,
+      "permissions": {
+        "reports": [
+          "view",
+          "export",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "export",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "edit",
+          "export"
+        ],
+        "customers": [
+          "view",
+          "edit",
+          "export"
+        ],
+        "inventory": [
+          "view",
+          "export"
+        ],
+        "audit_logs": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_owner_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "Owner",
+      "description": "صلاحيات كاملة وغير محدودة للنظام",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "products": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "recipes": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "branches": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "warehouses": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "users": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "reports": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "audit_logs": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "settings": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "role_manager_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "General Manager",
+      "description": "إدارة العمليات والمخزون والمبيعات والموظفين",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "edit",
+          "delete",
+          "approve",
+          "export",
+          "print"
+        ],
+        "products": [
+          "view",
+          "create",
+          "edit",
+          "export"
+        ],
+        "recipes": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "approve"
+        ],
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "approve"
+        ],
+        "purchases": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "customers": [
+          "view",
+          "create",
+          "edit"
+        ],
+        "reports": [
+          "view",
+          "export",
+          "print"
+        ],
+        "audit_logs": [
+          "view"
+        ],
+        "users": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_cashier_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "Cashier",
+      "description": "شاشة البيع ونقاط البيع واستلام المبالغ والطباعة",
+      "isSystem": true,
+      "permissions": {
+        "pos": [
+          "view",
+          "create",
+          "print"
+        ],
+        "products": [
+          "view"
+        ],
+        "customers": [
+          "view",
+          "create"
+        ],
+        "reports": [
+          "view",
+          "print"
+        ]
+      }
+    },
+    {
+      "id": "role_warehouse_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "Warehouse Officer",
+      "description": "إدارة المخازن، التحويلات، الجرد، واستلام المشتريات",
+      "isSystem": true,
+      "permissions": {
+        "inventory": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "export",
+          "print"
+        ],
+        "transfers": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "approve"
+        ],
+        "products": [
+          "view"
+        ],
+        "recipes": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_kitchen_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "Kitchen / Production",
+      "description": "أوامر التصنيع وإعداد الوصفات واستهلاك المواد الخام",
+      "isSystem": true,
+      "permissions": {
+        "manufacturing": [
+          "view",
+          "create",
+          "edit",
+          "approve",
+          "print"
+        ],
+        "recipes": [
+          "view"
+        ],
+        "inventory": [
+          "view"
+        ],
+        "products": [
+          "view"
+        ]
+      }
+    },
+    {
+      "id": "role_accountant_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "Accountant",
+      "description": "التقارير المالية وحسابات العملاء والموردين",
+      "isSystem": true,
+      "permissions": {
+        "reports": [
+          "view",
+          "export",
+          "print"
+        ],
+        "purchases": [
+          "view",
+          "export",
+          "print"
+        ],
+        "suppliers": [
+          "view",
+          "edit",
+          "export"
+        ],
+        "customers": [
+          "view",
+          "edit",
+          "export"
+        ],
+        "inventory": [
+          "view",
+          "export"
+        ],
+        "audit_logs": [
+          "view"
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "usr_owner_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "username": "admin",
+      "email": "admin@premier-pos.com",
+      "fullName": "المهندس علاء سيد (المالك)",
+      "roleId": "role_owner_tenant_1788690044038_g41b",
+      "roleName": "Owner",
+      "assignedBranchIds": [
+        "*"
+      ],
+      "isActive": true,
+      "pinCode": "1234",
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "lastLoginAt": "2026-09-06T10:20:55.895Z"
+    },
+    {
+      "id": "usr_cashier_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "username": "cashier1",
+      "email": "cashier@tenant_1788690044038_g41b.com",
+      "fullName": "أحمد كاشير (الفرع الرئيسي)",
+      "roleId": "role_cashier_tenant_1788690044038_g41b",
+      "roleName": "Cashier",
+      "assignedBranchIds": [
+        "br_main_tenant_1788690044038_g41b"
+      ],
+      "isActive": true,
+      "pinCode": "2222",
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "usr_b2_mgr_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "username": "nakheel_mgr",
+      "email": "mgr_nakheel@tenant_1788690044038_g41b.com",
+      "fullName": "سامي مدير فرع النخيل",
+      "roleId": "role_manager_tenant_1788690044038_g41b",
+      "roleName": "General Manager",
+      "assignedBranchIds": [
+        "br_sec_tenant_1788690044038_g41b"
+      ],
+      "isActive": true,
+      "pinCode": "3333",
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "usr_kitchen_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "username": "chef1",
+      "email": "chef@tenant_1788690044038_g41b.com",
+      "fullName": "الشيف طارق (المطبخ والتصنيع)",
+      "roleId": "role_kitchen_tenant_1788690044038_g41b",
+      "roleName": "Kitchen / Production",
+      "assignedBranchIds": [
+        "br_main_tenant_1788690044038_g41b"
+      ],
+      "isActive": true,
+      "pinCode": "4444",
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "usr_wh_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "username": "wh_officer",
+      "email": "warehouse@tenant_1788690044038_g41b.com",
+      "fullName": "عمر مسؤول المخزن",
+      "roleId": "role_warehouse_tenant_1788690044038_g41b",
+      "roleName": "Warehouse Officer",
+      "assignedBranchIds": [
+        "*"
+      ],
+      "isActive": true,
+      "pinCode": "5555",
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "usr_owner_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "username": "tenant_b_admin",
+      "email": "isolation-test@isolated.com",
+      "fullName": "مها الشمري",
+      "roleId": "role_owner_tenant_1788690119240_wddc",
+      "roleName": "Owner",
+      "assignedBranchIds": [
+        "*"
+      ],
+      "isActive": true,
+      "pinCode": "1234",
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "usr_cashier_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "username": "cashier1",
+      "email": "cashier@tenant_1788690119240_wddc.com",
+      "fullName": "أحمد كاشير (الفرع الرئيسي)",
+      "roleId": "role_cashier_tenant_1788690119240_wddc",
+      "roleName": "Cashier",
+      "assignedBranchIds": [
+        "br_main_tenant_1788690119240_wddc"
+      ],
+      "isActive": true,
+      "pinCode": "2222",
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "usr_b2_mgr_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "username": "nakheel_mgr",
+      "email": "mgr_nakheel@tenant_1788690119240_wddc.com",
+      "fullName": "سامي مدير فرع النخيل",
+      "roleId": "role_manager_tenant_1788690119240_wddc",
+      "roleName": "General Manager",
+      "assignedBranchIds": [
+        "br_sec_tenant_1788690119240_wddc"
+      ],
+      "isActive": true,
+      "pinCode": "3333",
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "usr_kitchen_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "username": "chef1",
+      "email": "chef@tenant_1788690119240_wddc.com",
+      "fullName": "الشيف طارق (المطبخ والتصنيع)",
+      "roleId": "role_kitchen_tenant_1788690119240_wddc",
+      "roleName": "Kitchen / Production",
+      "assignedBranchIds": [
+        "br_main_tenant_1788690119240_wddc"
+      ],
+      "isActive": true,
+      "pinCode": "4444",
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "usr_wh_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "username": "wh_officer",
+      "email": "warehouse@tenant_1788690119240_wddc.com",
+      "fullName": "عمر مسؤول المخزن",
+      "roleId": "role_warehouse_tenant_1788690119240_wddc",
+      "roleName": "Warehouse Officer",
+      "assignedBranchIds": [
+        "*"
+      ],
+      "isActive": true,
+      "pinCode": "5555",
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_burgers_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "برجر ووجبات سريعة",
+      "nameEn": "Burgers & Meals",
+      "color": "#f59e0b",
+      "icon": "Utensils",
+      "sortOrder": 1
+    },
+    {
+      "id": "cat_shawarma_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "شاورما وساندوتشات",
+      "nameEn": "Shawarma & Sandwiches",
+      "color": "#ef4444",
+      "icon": "Flame",
+      "sortOrder": 2
+    },
+    {
+      "id": "cat_sides_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "المقبلات والبطاطس",
+      "nameEn": "Sides & Fries",
+      "color": "#10b981",
+      "icon": "Package",
+      "sortOrder": 3
+    },
+    {
+      "id": "cat_drinks_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "المشروبات الباردة",
+      "nameEn": "Cold Drinks",
+      "color": "#06b6d4",
+      "icon": "Coffee",
+      "sortOrder": 4
+    },
+    {
+      "id": "cat_raw_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "المواد الخام والمكونات",
+      "nameEn": "Raw Ingredients",
+      "color": "#8b5cf6",
+      "icon": "Layers",
+      "sortOrder": 5
+    },
+    {
+      "id": "cat_burgers_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "برجر ووجبات سريعة",
+      "nameEn": "Burgers & Meals",
+      "color": "#f59e0b",
+      "icon": "Utensils",
+      "sortOrder": 1
+    },
+    {
+      "id": "cat_shawarma_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "شاورما وساندوتشات",
+      "nameEn": "Shawarma & Sandwiches",
+      "color": "#ef4444",
+      "icon": "Flame",
+      "sortOrder": 2
+    },
+    {
+      "id": "cat_sides_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "المقبلات والبطاطس",
+      "nameEn": "Sides & Fries",
+      "color": "#10b981",
+      "icon": "Package",
+      "sortOrder": 3
+    },
+    {
+      "id": "cat_drinks_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "المشروبات الباردة",
+      "nameEn": "Cold Drinks",
+      "color": "#06b6d4",
+      "icon": "Coffee",
+      "sortOrder": 4
+    },
+    {
+      "id": "cat_raw_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "المواد الخام والمكونات",
+      "nameEn": "Raw Ingredients",
+      "color": "#8b5cf6",
+      "icon": "Layers",
+      "sortOrder": 5
+    }
+  ],
+  "units": [
+    {
+      "id": "unit_kg_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "كيلوجرام",
+      "symbol": "كجم",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_g_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "جرام",
+      "symbol": "جم",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_pcs_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "حبة / قطعة",
+      "symbol": "حبة",
+      "isDecimalAllowed": false
+    },
+    {
+      "id": "unit_l_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "لتر",
+      "symbol": "لتر",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_can_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "علبة",
+      "symbol": "علبة",
+      "isDecimalAllowed": false
+    },
+    {
+      "id": "unit_kg_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "كيلوجرام",
+      "symbol": "كجم",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_g_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "جرام",
+      "symbol": "جم",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_pcs_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "حبة / قطعة",
+      "symbol": "حبة",
+      "isDecimalAllowed": false
+    },
+    {
+      "id": "unit_l_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "لتر",
+      "symbol": "لتر",
+      "isDecimalAllowed": true
+    },
+    {
+      "id": "unit_can_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "علبة",
+      "symbol": "علبة",
+      "isDecimalAllowed": false
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_raw_beef_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "لحم عجل مفروم طازج",
+      "nameEn": "Fresh Minced Beef",
+      "sku": "RAW-BEEF-01",
+      "barcode": "6281001001",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690044038_g41b",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 42,
+      "minStockLevel": 20,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_bun_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "خبز برجر بريوش ذهبي",
+      "nameEn": "Brioche Burger Bun",
+      "sku": "RAW-BUN-01",
+      "barcode": "6281001002",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_pcs_tenant_1788690044038_g41b",
+      "unitSymbol": "حبة",
+      "sellingPrice": 0,
+      "costPrice": 1.5,
+      "minStockLevel": 50,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_cheese_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "جبنة شيدر شرائح فاخرة",
+      "nameEn": "Cheddar Cheese Slices",
+      "sku": "RAW-CHS-01",
+      "barcode": "6281001003",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690044038_g41b",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 32,
+      "minStockLevel": 10,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_sauce_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "صوص البريميير الخاص",
+      "nameEn": "Premier Secret Sauce",
+      "sku": "RAW-SAU-01",
+      "barcode": "6281001004",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_l_tenant_1788690044038_g41b",
+      "unitSymbol": "لتر",
+      "sellingPrice": 0,
+      "costPrice": 20,
+      "minStockLevel": 15,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_chicken_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "دجاج شاورما متبل طازج",
+      "nameEn": "Marinated Shawarma Chicken",
+      "sku": "RAW-CHK-01",
+      "barcode": "6281001005",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690044038_g41b",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 26,
+      "minStockLevel": 25,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_tortilla_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "خبز صاج / تورتيلا شاورما",
+      "nameEn": "Tortilla Bread",
+      "sku": "RAW-TOR-01",
+      "barcode": "6281001006",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_pcs_tenant_1788690044038_g41b",
+      "unitSymbol": "حبة",
+      "sellingPrice": 0,
+      "costPrice": 0.8,
+      "minStockLevel": 100,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_potato_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "بطاطس مقطعة للتجهيز",
+      "nameEn": "Raw Cut Fries Potato",
+      "sku": "RAW-POT-01",
+      "barcode": "6281001007",
+      "categoryId": "cat_raw_tenant_1788690044038_g41b",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690044038_g41b",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 7.5,
+      "minStockLevel": 40,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_burger_dlx_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "برجر ديلوكس بريميير (لحم)",
+      "nameEn": "Premier Deluxe Burger",
+      "sku": "FG-BGR-01",
+      "barcode": "6282001001",
+      "categoryId": "cat_burgers_tenant_1788690044038_g41b",
+      "categoryName": "برجر ووجبات سريعة",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690044038_g41b",
+      "unitSymbol": "حبة",
+      "sellingPrice": 38,
+      "costPrice": 10.94,
+      "minStockLevel": 10,
+      "hasRecipe": true,
+      "recipeNotes": "يُشوى اللحم بدرجة حرارة 200 مع إضافة الشيدر الذائب والصوص الخاص",
+      "recipe": [
+        {
+          "id": "rec_1_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_beef_tenant_1788690044038_g41b",
+          "rawMaterialName": "لحم عجل مفروم طازج",
+          "quantity": 0.18,
+          "unitId": "unit_kg_tenant_1788690044038_g41b",
+          "unitSymbol": "كجم",
+          "unitCost": 42,
+          "totalCost": 7.56
+        },
+        {
+          "id": "rec_2_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_bun_tenant_1788690044038_g41b",
+          "rawMaterialName": "خبز برجر بريوش ذهبي",
+          "quantity": 1,
+          "unitId": "unit_pcs_tenant_1788690044038_g41b",
+          "unitSymbol": "حبة",
+          "unitCost": 1.5,
+          "totalCost": 1.5
+        },
+        {
+          "id": "rec_3_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_cheese_tenant_1788690044038_g41b",
+          "rawMaterialName": "جبنة شيدر شرائح فاخرة",
+          "quantity": 0.04,
+          "unitId": "unit_kg_tenant_1788690044038_g41b",
+          "unitSymbol": "كجم",
+          "unitCost": 32,
+          "totalCost": 1.28
+        },
+        {
+          "id": "rec_4_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_sauce_tenant_1788690044038_g41b",
+          "rawMaterialName": "صوص البريميير الخاص",
+          "quantity": 0.03,
+          "unitId": "unit_l_tenant_1788690044038_g41b",
+          "unitSymbol": "لتر",
+          "unitCost": 20,
+          "totalCost": 0.6
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_shawarma_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "شاورما دجاج صاروخ مقرمش",
+      "nameEn": "Crispy Chicken Shawarma",
+      "sku": "FG-SHW-01",
+      "barcode": "6282001002",
+      "categoryId": "cat_shawarma_tenant_1788690044038_g41b",
+      "categoryName": "شاورما وساندوتشات",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690044038_g41b",
+      "unitSymbol": "حبة",
+      "sellingPrice": 24,
+      "costPrice": 5.56,
+      "minStockLevel": 15,
+      "hasRecipe": true,
+      "recipeNotes": "تحمص على الجريل مع الثومية ومخلل الخيار",
+      "recipe": [
+        {
+          "id": "rec_shw_1_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_chicken_tenant_1788690044038_g41b",
+          "rawMaterialName": "دجاج شاورما متبل طازج",
+          "quantity": 0.16,
+          "unitId": "unit_kg_tenant_1788690044038_g41b",
+          "unitSymbol": "كجم",
+          "unitCost": 26,
+          "totalCost": 4.16
+        },
+        {
+          "id": "rec_shw_2_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_tortilla_tenant_1788690044038_g41b",
+          "rawMaterialName": "خبز صاج / تورتيلا شاورما",
+          "quantity": 1,
+          "unitId": "unit_pcs_tenant_1788690044038_g41b",
+          "unitSymbol": "حبة",
+          "unitCost": 0.8,
+          "totalCost": 0.8
+        },
+        {
+          "id": "rec_shw_3_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_sauce_tenant_1788690044038_g41b",
+          "rawMaterialName": "صوص البريميير الخاص",
+          "quantity": 0.03,
+          "unitId": "unit_l_tenant_1788690044038_g41b",
+          "unitSymbol": "لتر",
+          "unitCost": 20,
+          "totalCost": 0.6
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_fries_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "بطاطس مقلية كرسبي مع بهارات",
+      "nameEn": "Crispy French Fries",
+      "sku": "FG-FRS-01",
+      "barcode": "6282001003",
+      "categoryId": "cat_sides_tenant_1788690044038_g41b",
+      "categoryName": "المقبلات والبطاطس",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690044038_g41b",
+      "unitSymbol": "حبة",
+      "sellingPrice": 14,
+      "costPrice": 1.88,
+      "minStockLevel": 20,
+      "hasRecipe": true,
+      "recipe": [
+        {
+          "id": "rec_frs_1_tenant_1788690044038_g41b",
+          "rawMaterialId": "prod_raw_potato_tenant_1788690044038_g41b",
+          "rawMaterialName": "بطاطس مقطعة للتجهيز",
+          "quantity": 0.25,
+          "unitId": "unit_kg_tenant_1788690044038_g41b",
+          "unitSymbol": "كجم",
+          "unitCost": 7.5,
+          "totalCost": 1.88
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_cola_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "كوكا كولا مثلجة 330 مل",
+      "nameEn": "Coca Cola 330ml Can",
+      "sku": "STD-COLA-01",
+      "barcode": "6282001004",
+      "categoryId": "cat_drinks_tenant_1788690044038_g41b",
+      "categoryName": "المشروبات الباردة",
+      "type": "standard",
+      "unitId": "unit_can_tenant_1788690044038_g41b",
+      "unitSymbol": "علبة",
+      "sellingPrice": 6,
+      "costPrice": 2.75,
+      "minStockLevel": 48,
+      "hasRecipe": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_water_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "مياه ينابيع معدنية 500 مل",
+      "nameEn": "Mineral Water 500ml",
+      "sku": "STD-WAT-01",
+      "barcode": "6282001005",
+      "categoryId": "cat_drinks_tenant_1788690044038_g41b",
+      "categoryName": "المشروبات الباردة",
+      "type": "standard",
+      "unitId": "unit_can_tenant_1788690044038_g41b",
+      "unitSymbol": "علبة",
+      "sellingPrice": 3,
+      "costPrice": 0.9,
+      "minStockLevel": 96,
+      "hasRecipe": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z",
+      "updatedAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "prod_raw_beef_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "لحم عجل مفروم طازج",
+      "nameEn": "Fresh Minced Beef",
+      "sku": "RAW-BEEF-01",
+      "barcode": "6281001001",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690119240_wddc",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 42,
+      "minStockLevel": 20,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_bun_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "خبز برجر بريوش ذهبي",
+      "nameEn": "Brioche Burger Bun",
+      "sku": "RAW-BUN-01",
+      "barcode": "6281001002",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_pcs_tenant_1788690119240_wddc",
+      "unitSymbol": "حبة",
+      "sellingPrice": 0,
+      "costPrice": 1.5,
+      "minStockLevel": 50,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_cheese_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "جبنة شيدر شرائح فاخرة",
+      "nameEn": "Cheddar Cheese Slices",
+      "sku": "RAW-CHS-01",
+      "barcode": "6281001003",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690119240_wddc",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 32,
+      "minStockLevel": 10,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_sauce_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "صوص البريميير الخاص",
+      "nameEn": "Premier Secret Sauce",
+      "sku": "RAW-SAU-01",
+      "barcode": "6281001004",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_l_tenant_1788690119240_wddc",
+      "unitSymbol": "لتر",
+      "sellingPrice": 0,
+      "costPrice": 20,
+      "minStockLevel": 15,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_chicken_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "دجاج شاورما متبل طازج",
+      "nameEn": "Marinated Shawarma Chicken",
+      "sku": "RAW-CHK-01",
+      "barcode": "6281001005",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690119240_wddc",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 26,
+      "minStockLevel": 25,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_tortilla_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "خبز صاج / تورتيلا شاورما",
+      "nameEn": "Tortilla Bread",
+      "sku": "RAW-TOR-01",
+      "barcode": "6281001006",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_pcs_tenant_1788690119240_wddc",
+      "unitSymbol": "حبة",
+      "sellingPrice": 0,
+      "costPrice": 0.8,
+      "minStockLevel": 100,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_raw_potato_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "بطاطس مقطعة للتجهيز",
+      "nameEn": "Raw Cut Fries Potato",
+      "sku": "RAW-POT-01",
+      "barcode": "6281001007",
+      "categoryId": "cat_raw_tenant_1788690119240_wddc",
+      "categoryName": "المواد الخام والمكونات",
+      "type": "raw_material",
+      "unitId": "unit_kg_tenant_1788690119240_wddc",
+      "unitSymbol": "كجم",
+      "sellingPrice": 0,
+      "costPrice": 7.5,
+      "minStockLevel": 40,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_burger_dlx_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "برجر ديلوكس بريميير (لحم)",
+      "nameEn": "Premier Deluxe Burger",
+      "sku": "FG-BGR-01",
+      "barcode": "6282001001",
+      "categoryId": "cat_burgers_tenant_1788690119240_wddc",
+      "categoryName": "برجر ووجبات سريعة",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690119240_wddc",
+      "unitSymbol": "حبة",
+      "sellingPrice": 38,
+      "costPrice": 10.94,
+      "minStockLevel": 10,
+      "hasRecipe": true,
+      "recipeNotes": "يُشوى اللحم بدرجة حرارة 200 مع إضافة الشيدر الذائب والصوص الخاص",
+      "recipe": [
+        {
+          "id": "rec_1_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_beef_tenant_1788690119240_wddc",
+          "rawMaterialName": "لحم عجل مفروم طازج",
+          "quantity": 0.18,
+          "unitId": "unit_kg_tenant_1788690119240_wddc",
+          "unitSymbol": "كجم",
+          "unitCost": 42,
+          "totalCost": 7.56
+        },
+        {
+          "id": "rec_2_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_bun_tenant_1788690119240_wddc",
+          "rawMaterialName": "خبز برجر بريوش ذهبي",
+          "quantity": 1,
+          "unitId": "unit_pcs_tenant_1788690119240_wddc",
+          "unitSymbol": "حبة",
+          "unitCost": 1.5,
+          "totalCost": 1.5
+        },
+        {
+          "id": "rec_3_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_cheese_tenant_1788690119240_wddc",
+          "rawMaterialName": "جبنة شيدر شرائح فاخرة",
+          "quantity": 0.04,
+          "unitId": "unit_kg_tenant_1788690119240_wddc",
+          "unitSymbol": "كجم",
+          "unitCost": 32,
+          "totalCost": 1.28
+        },
+        {
+          "id": "rec_4_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_sauce_tenant_1788690119240_wddc",
+          "rawMaterialName": "صوص البريميير الخاص",
+          "quantity": 0.03,
+          "unitId": "unit_l_tenant_1788690119240_wddc",
+          "unitSymbol": "لتر",
+          "unitCost": 20,
+          "totalCost": 0.6
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_shawarma_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "شاورما دجاج صاروخ مقرمش",
+      "nameEn": "Crispy Chicken Shawarma",
+      "sku": "FG-SHW-01",
+      "barcode": "6282001002",
+      "categoryId": "cat_shawarma_tenant_1788690119240_wddc",
+      "categoryName": "شاورما وساندوتشات",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690119240_wddc",
+      "unitSymbol": "حبة",
+      "sellingPrice": 24,
+      "costPrice": 5.56,
+      "minStockLevel": 15,
+      "hasRecipe": true,
+      "recipeNotes": "تحمص على الجريل مع الثومية ومخلل الخيار",
+      "recipe": [
+        {
+          "id": "rec_shw_1_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_chicken_tenant_1788690119240_wddc",
+          "rawMaterialName": "دجاج شاورما متبل طازج",
+          "quantity": 0.16,
+          "unitId": "unit_kg_tenant_1788690119240_wddc",
+          "unitSymbol": "كجم",
+          "unitCost": 26,
+          "totalCost": 4.16
+        },
+        {
+          "id": "rec_shw_2_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_tortilla_tenant_1788690119240_wddc",
+          "rawMaterialName": "خبز صاج / تورتيلا شاورما",
+          "quantity": 1,
+          "unitId": "unit_pcs_tenant_1788690119240_wddc",
+          "unitSymbol": "حبة",
+          "unitCost": 0.8,
+          "totalCost": 0.8
+        },
+        {
+          "id": "rec_shw_3_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_sauce_tenant_1788690119240_wddc",
+          "rawMaterialName": "صوص البريميير الخاص",
+          "quantity": 0.03,
+          "unitId": "unit_l_tenant_1788690119240_wddc",
+          "unitSymbol": "لتر",
+          "unitCost": 20,
+          "totalCost": 0.6
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_fries_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "بطاطس مقلية كرسبي مع بهارات",
+      "nameEn": "Crispy French Fries",
+      "sku": "FG-FRS-01",
+      "barcode": "6282001003",
+      "categoryId": "cat_sides_tenant_1788690119240_wddc",
+      "categoryName": "المقبلات والبطاطس",
+      "type": "recipe_based",
+      "unitId": "unit_pcs_tenant_1788690119240_wddc",
+      "unitSymbol": "حبة",
+      "sellingPrice": 14,
+      "costPrice": 1.88,
+      "minStockLevel": 20,
+      "hasRecipe": true,
+      "recipe": [
+        {
+          "id": "rec_frs_1_tenant_1788690119240_wddc",
+          "rawMaterialId": "prod_raw_potato_tenant_1788690119240_wddc",
+          "rawMaterialName": "بطاطس مقطعة للتجهيز",
+          "quantity": 0.25,
+          "unitId": "unit_kg_tenant_1788690119240_wddc",
+          "unitSymbol": "كجم",
+          "unitCost": 7.5,
+          "totalCost": 1.88
+        }
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_cola_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "كوكا كولا مثلجة 330 مل",
+      "nameEn": "Coca Cola 330ml Can",
+      "sku": "STD-COLA-01",
+      "barcode": "6282001004",
+      "categoryId": "cat_drinks_tenant_1788690119240_wddc",
+      "categoryName": "المشروبات الباردة",
+      "type": "standard",
+      "unitId": "unit_can_tenant_1788690119240_wddc",
+      "unitSymbol": "علبة",
+      "sellingPrice": 6,
+      "costPrice": 2.75,
+      "minStockLevel": 48,
+      "hasRecipe": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "prod_water_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "مياه ينابيع معدنية 500 مل",
+      "nameEn": "Mineral Water 500ml",
+      "sku": "STD-WAT-01",
+      "barcode": "6282001005",
+      "categoryId": "cat_drinks_tenant_1788690119240_wddc",
+      "categoryName": "المشروبات الباردة",
+      "type": "standard",
+      "unitId": "unit_can_tenant_1788690119240_wddc",
+      "unitSymbol": "علبة",
+      "sellingPrice": 3,
+      "costPrice": 0.9,
+      "minStockLevel": 96,
+      "hasRecipe": false,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "stockLevels": [
+    {
+      "id": "stk_1788690044039_edzl4",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_beef_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_83wqq",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_bun_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 400,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_innw5",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_cheese_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 45,
+      "reservedQuantity": 0,
+      "averageUnitCost": 32,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_4vi2n",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_sauce_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 80,
+      "reservedQuantity": 0,
+      "averageUnitCost": 20,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_k4am5",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_chicken_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 150,
+      "reservedQuantity": 0,
+      "averageUnitCost": 26,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_t8ddk",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_tortilla_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 500,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.8,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_fc95o",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_potato_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 250,
+      "reservedQuantity": 0,
+      "averageUnitCost": 7.5,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_twwh8",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_cola_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 360,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_2jyby",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_water_tenant_1788690044038_g41b",
+      "warehouseId": "wh_main_tenant_1788690044038_g41b",
+      "quantity": 480,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.9,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_6yl6h",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_beef_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 35,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_sfu0q",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_bun_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_0qv0v",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_cheese_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 12,
+      "reservedQuantity": 0,
+      "averageUnitCost": 32,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_yq2bh",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_sauce_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 25,
+      "reservedQuantity": 0,
+      "averageUnitCost": 20,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_d7kfa",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_chicken_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 40,
+      "reservedQuantity": 0,
+      "averageUnitCost": 26,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_9kolt",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_tortilla_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 150,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.8,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_kb7ty",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_potato_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 60,
+      "reservedQuantity": 0,
+      "averageUnitCost": 7.5,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_zc22n",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_cola_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 84,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_9gc3b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_water_tenant_1788690044038_g41b",
+      "warehouseId": "wh_floor_tenant_1788690044038_g41b",
+      "quantity": 110,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.9,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_p0v07",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_beef_tenant_1788690044038_g41b",
+      "warehouseId": "wh_sec_tenant_1788690044038_g41b",
+      "quantity": 50,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_xuzlm",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_raw_bun_tenant_1788690044038_g41b",
+      "warehouseId": "wh_sec_tenant_1788690044038_g41b",
+      "quantity": 200,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690044039_71m40",
+      "tenantId": "tenant_1788690044038_g41b",
+      "productId": "prod_cola_tenant_1788690044038_g41b",
+      "warehouseId": "wh_sec_tenant_1788690044038_g41b",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:20:44.039Z"
+    },
+    {
+      "id": "stk_1788690119240_aeq6p",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_beef_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_55gd6",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_bun_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 400,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_5ihye",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_cheese_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 45,
+      "reservedQuantity": 0,
+      "averageUnitCost": 32,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_l282u",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_sauce_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 80,
+      "reservedQuantity": 0,
+      "averageUnitCost": 20,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_iscto",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_chicken_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 150,
+      "reservedQuantity": 0,
+      "averageUnitCost": 26,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_970nb",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_tortilla_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 500,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.8,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_5kpld",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_potato_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 250,
+      "reservedQuantity": 0,
+      "averageUnitCost": 7.5,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_je85l",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_cola_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 360,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_c1jw4",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_water_tenant_1788690119240_wddc",
+      "warehouseId": "wh_main_tenant_1788690119240_wddc",
+      "quantity": 480,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.9,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_5tfkb",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_beef_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 35,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_80b2o",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_bun_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_u1aea",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_cheese_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 12,
+      "reservedQuantity": 0,
+      "averageUnitCost": 32,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_ml00n",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_sauce_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 25,
+      "reservedQuantity": 0,
+      "averageUnitCost": 20,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_xtm0p",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_chicken_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 40,
+      "reservedQuantity": 0,
+      "averageUnitCost": 26,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_wcd2x",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_tortilla_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 150,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.8,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_ap4fe",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_potato_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 60,
+      "reservedQuantity": 0,
+      "averageUnitCost": 7.5,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_6nwjk",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_cola_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 84,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_v49z3",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_water_tenant_1788690119240_wddc",
+      "warehouseId": "wh_floor_tenant_1788690119240_wddc",
+      "quantity": 110,
+      "reservedQuantity": 0,
+      "averageUnitCost": 0.9,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_cuwpk",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_beef_tenant_1788690119240_wddc",
+      "warehouseId": "wh_sec_tenant_1788690119240_wddc",
+      "quantity": 50,
+      "reservedQuantity": 0,
+      "averageUnitCost": 42,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_3thav",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_raw_bun_tenant_1788690119240_wddc",
+      "warehouseId": "wh_sec_tenant_1788690119240_wddc",
+      "quantity": 200,
+      "reservedQuantity": 0,
+      "averageUnitCost": 1.5,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "stk_1788690119240_kayru",
+      "tenantId": "tenant_1788690119240_wddc",
+      "productId": "prod_cola_tenant_1788690119240_wddc",
+      "warehouseId": "wh_sec_tenant_1788690119240_wddc",
+      "quantity": 120,
+      "reservedQuantity": 0,
+      "averageUnitCost": 2.75,
+      "updatedAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "inventoryMovements": [],
+  "stockTransfers": [],
+  "stockAdjustments": [],
+  "workOrders": [],
+  "suppliers": [
+    {
+      "id": "sup_1_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "مؤسسة اللحوم الطازجة الممتازة",
+      "companyName": "شركة اللحوم السعودية المحدودة",
+      "taxNumber": "300984729100003",
+      "phone": "+966 54 888 1234",
+      "email": "orders@saudimeat.sa",
+      "address": "سوق الماشية المركزي، الرياض",
+      "currentBalance": 4500,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "sup_2_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "مخبز الأرياف للخبز والمعجنات",
+      "companyName": "مخابز الأرياف",
+      "taxNumber": "300765432100003",
+      "phone": "+966 50 777 9900",
+      "email": "info@aryaf-bakery.com",
+      "address": "المنطقة الصناعية الثانية، الرياض",
+      "currentBalance": 1200,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "sup_3_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "شركة المشروبات والتوزيع العالمية",
+      "companyName": "العليان للتوزيع",
+      "taxNumber": "300112233400003",
+      "phone": "+966 11 999 4444",
+      "email": "sales@beverages-ksa.com",
+      "address": "طريق الخرج، الرياض",
+      "currentBalance": 0,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "sup_1_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "مؤسسة اللحوم الطازجة الممتازة",
+      "companyName": "شركة اللحوم السعودية المحدودة",
+      "taxNumber": "300984729100003",
+      "phone": "+966 54 888 1234",
+      "email": "orders@saudimeat.sa",
+      "address": "سوق الماشية المركزي، الرياض",
+      "currentBalance": 4500,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "sup_2_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "مخبز الأرياف للخبز والمعجنات",
+      "companyName": "مخابز الأرياف",
+      "taxNumber": "300765432100003",
+      "phone": "+966 50 777 9900",
+      "email": "info@aryaf-bakery.com",
+      "address": "المنطقة الصناعية الثانية، الرياض",
+      "currentBalance": 1200,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "sup_3_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "شركة المشروبات والتوزيع العالمية",
+      "companyName": "العليان للتوزيع",
+      "taxNumber": "300112233400003",
+      "phone": "+966 11 999 4444",
+      "email": "sales@beverages-ksa.com",
+      "address": "طريق الخرج، الرياض",
+      "currentBalance": 0,
+      "isActive": true,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "purchaseInvoices": [],
+  "customers": [
+    {
+      "id": "cust_1_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "فيصل العتيبي",
+      "phone": "0551234567",
+      "email": "faisal@example.com",
+      "loyaltyPoints": 140,
+      "currentBalance": 0,
+      "creditLimit": 500,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "cust_2_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "name": "شركة نماء العقارية (حساب آجل)",
+      "phone": "0112345678",
+      "email": "corporate@namaa.sa",
+      "taxNumber": "300192837400003",
+      "loyaltyPoints": 420,
+      "currentBalance": 1850,
+      "creditLimit": 10000,
+      "createdAt": "2026-09-06T10:20:44.038Z"
+    },
+    {
+      "id": "cust_1_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "فيصل العتيبي",
+      "phone": "0551234567",
+      "email": "faisal@example.com",
+      "loyaltyPoints": 140,
+      "currentBalance": 0,
+      "creditLimit": 500,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    },
+    {
+      "id": "cust_2_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "name": "شركة نماء العقارية (حساب آجل)",
+      "phone": "0112345678",
+      "email": "corporate@namaa.sa",
+      "taxNumber": "300192837400003",
+      "loyaltyPoints": 420,
+      "currentBalance": 1850,
+      "creditLimit": 10000,
+      "createdAt": "2026-09-06T10:21:59.240Z"
+    }
+  ],
+  "saleInvoices": [],
+  "cashierShifts": [
+    {
+      "id": "shift_1788690044039_tenant_1788690044038_g41b",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "shiftNumber": "SH-001",
+      "cashierUserId": "usr_owner_tenant_1788690044038_g41b",
+      "cashierName": "المهندس علاء سيد (المالك)",
+      "openingCash": 500,
+      "status": "open",
+      "startedAt": "2026-09-06T10:20:44.038Z",
+      "totalSalesCount": 0,
+      "totalSalesAmount": 0,
+      "totalCashSales": 0,
+      "totalCardSales": 0,
+      "totalCreditSales": 0,
+      "notes": "وردية بداية العمل التلقائية"
+    },
+    {
+      "id": "shift_1788690119240_tenant_1788690119240_wddc",
+      "tenantId": "tenant_1788690119240_wddc",
+      "branchId": "br_main_tenant_1788690119240_wddc",
+      "shiftNumber": "SH-001",
+      "cashierUserId": "usr_owner_tenant_1788690119240_wddc",
+      "cashierName": "مها الشمري",
+      "openingCash": 500,
+      "status": "open",
+      "startedAt": "2026-09-06T10:21:59.240Z",
+      "totalSalesCount": 0,
+      "totalSalesAmount": 0,
+      "totalCashSales": 0,
+      "totalCardSales": 0,
+      "totalCreditSales": 0,
+      "notes": "وردية بداية العمل التلقائية"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "aud_1788690119244_snd0m",
+      "createdAt": "2026-09-06T10:21:59.244Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Security Officer",
+      "action": "security.rbac_matrix_verified",
+      "module": "security",
+      "entityType": "role",
+      "entityId": "role_cashier_tenant_1788690044038_g41b",
+      "description": "اختبار مصفوفة الصلاحيات (RBAC): تم التحقق من حظر تصعيد الصلاحيات (Privilege Escalation) وحظر العمليات الحساسة على أدوار الكاشير وموظفي الصالة.",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690119243_w2o7e",
+      "createdAt": "2026-09-06T10:21:59.243Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Security Officer",
+      "action": "security.branch_isolation_verified",
+      "module": "security",
+      "entityType": "branch",
+      "entityId": "br_sec_tenant_1788690044038_g41b",
+      "description": "اختبار عزل الفروع: تم التحقق من منع مستخدمي فرع (الفرع الرئيسي - الرياض) من الوصول أو التعديل على بيانات فرع (فرع النخيل مول). تم الإغلاق بنجاح.",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690119242_2luzb",
+      "createdAt": "2026-09-06T10:21:59.242Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Security Officer",
+      "action": "security.tenant_isolation_verified",
+      "module": "security",
+      "entityType": "tenant",
+      "entityId": "tenant_1788690044038_g41b",
+      "description": "اختبار عزل الشركات (Multi-Tenant Isolation): تم فحص 12 صنف و 12 صنف للشركة الأخرى. نسبة العزل: 100% نجاح.",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690119240_3dzv8",
+      "createdAt": "2026-09-06T10:21:59.240Z",
+      "tenantId": "tenant_1788690119240_wddc",
+      "branchId": "br_main_tenant_1788690119240_wddc",
+      "userId": "usr_owner_tenant_1788690119240_wddc",
+      "userName": "مها الشمري",
+      "userRole": "Owner",
+      "action": "tenant.provision",
+      "module": "settings",
+      "entityType": "tenant",
+      "entityId": "tenant_1788690119240_wddc",
+      "description": "تم إنشاء وتهيئة بيئة الشركة والفرع والمخازن والمنتجات تلقائياً: شركة النجم المعزولة للتقنية (Tenant B)",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690055895_hu73j",
+      "createdAt": "2026-09-06T10:20:55.895Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Owner",
+      "action": "auth.login",
+      "module": "auth",
+      "entityType": "user",
+      "entityId": "usr_owner_tenant_1788690044038_g41b",
+      "description": "تسجيل دخول ناجح للمستخدم المهندس علاء سيد (المالك) (Owner)",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690055892_ebvhl",
+      "createdAt": "2026-09-06T10:20:55.892Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Owner",
+      "action": "auth.login",
+      "module": "auth",
+      "entityType": "user",
+      "entityId": "usr_owner_tenant_1788690044038_g41b",
+      "description": "تسجيل دخول ناجح للمستخدم المهندس علاء سيد (المالك) (Owner)",
+      "status": "success"
+    },
+    {
+      "id": "aud_1788690044039_okke2",
+      "createdAt": "2026-09-06T10:20:44.039Z",
+      "tenantId": "tenant_1788690044038_g41b",
+      "branchId": "br_main_tenant_1788690044038_g41b",
+      "userId": "usr_owner_tenant_1788690044038_g41b",
+      "userName": "المهندس علاء سيد (المالك)",
+      "userRole": "Owner",
+      "action": "tenant.provision",
+      "module": "settings",
+      "entityType": "tenant",
+      "entityId": "tenant_1788690044038_g41b",
+      "description": "تم إنشاء وتهيئة بيئة الشركة والفرع والمخازن والمنتجات تلقائياً: مطعم بريميير جورميه",
+      "status": "success"
+    }
+  ]
+}

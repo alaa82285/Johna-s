@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --app-bg: #F8FAFC;
+    --app-surface: #FFFFFF;
+    --app-border: #E2E8F0;
+    --app-border-subtle: #F1F5F9;
+    --app-text-primary: #0F172A;
+    --app-text-secondary: #64748B;
+    --app-text-muted: #94A3B8;
+    --app-primary: #2563EB;
+    --app-primary-dark: #1D4ED8;
+    --app-primary-light: #3B82F6;
+    --app-accent: #10B981;
+    --app-sidebar-bg: #0B1120;
+    --app-sidebar-border: #1E293B;
+  }
+
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom Scrollbar for Modern Tech theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

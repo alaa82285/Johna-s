@@ -1,0 +1,6 @@
+{
+  "name": "Premier POS & ERP",
+  "description": "نظام احترافي لإدارة نقاط البيع والمخزون والتصنيع والمشتريات والتقارير مع عزل أمني متعدد الشركات والفروع (Multi-Tenant POS/ERP).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
