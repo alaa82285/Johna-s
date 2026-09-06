@@ -4,6 +4,11 @@ import { AuthenticatedRequest, requirePermission } from '../db/rls';
 
 export const inventoryRouter = Router();
 
+inventoryRouter.get('/stocks', requirePermission('inventory','view'), async (req: AuthenticatedRequest,res)=>{
+  req.url=req.url.replace('/stocks','/levels');
+  let q=supabase.from('inventory').select('*, products(*), warehouses(*)'); const warehouseId=req.query.warehouseId as string|undefined; const branchId=(req.query.branchId as string|undefined)||req.activeBranchId; if(warehouseId)q=q.eq('warehouse_id',warehouseId);else if(branchId)q=q.eq('branch_id',branchId); const {data,error}=await q;if(error)return res.status(500).json({error:error.message});res.json({stockLevels:(data||[]).map((x:any)=>({id:x.id,productId:x.product_id,productName:x.products?.name,productSku:x.products?.sku,warehouseId:x.warehouse_id,warehouseName:x.warehouses?.name,quantity:Number(x.quantity||0),minStockLevel:Number(x.products?.low_stock_threshold||0),unitCost:Number(x.products?.cost_price||0),totalValue:Number(x.quantity||0)*Number(x.products?.cost_price||0),isLowStock:Number(x.quantity||0)<=Number(x.products?.low_stock_threshold||0),updatedAt:x.updated_at}))});
+});
+
 inventoryRouter.get('/levels', requirePermission('inventory','view'), async (req: AuthenticatedRequest,res)=>{
   const warehouseId=req.query.warehouseId as string|undefined;
   const branchId=(req.query.branchId as string|undefined)||req.activeBranchId;
