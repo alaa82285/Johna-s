@@ -1,94 +1,34 @@
 import { Router } from 'express';
-import { db } from '../db/store';
+import { supabase } from '../db/supabase';
 import { AuthenticatedRequest, requirePermission } from '../db/rls';
-import { Customer } from '../types';
 
 export const customersRouter = Router();
 
-// GET customers
-customersRouter.get('/', requirePermission('customers', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const customers = db.getState().customers.filter(c => c.tenantId === tenantId);
-  res.json({ customers });
+customersRouter.get('/', requirePermission('customers','view'), async (req: AuthenticatedRequest, res) => {
+  let q = supabase.from('customers').select('*').order('name');
+  if (req.activeBranchId) q = q.eq('branch_id', req.activeBranchId);
+  const { data, error } = await q;
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ customers: data || [] });
 });
 
-// Create Customer
-customersRouter.post('/', requirePermission('customers', 'create'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const state = db.getState();
-  const { name, phone, email, address, taxNumber, creditLimit } = req.body;
-
-  if (!name || !phone) {
-    return res.status(400).json({ error: 'اسم العميل ورقم الهاتف حقول مطلوبة' });
-  }
-
-  const customer: Customer = {
-    id: `cust_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
-    tenantId,
-    name,
-    phone,
-    email,
-    address,
-    taxNumber,
-    loyaltyPoints: 0,
-    currentBalance: 0,
-    creditLimit: Number(creditLimit || 0),
-    createdAt: new Date().toISOString()
-  };
-
-  state.customers.push(customer);
-
-  db.logAudit({
-    tenantId,
-    userId: req.user?.id || 'sys',
-    userName: req.user?.fullName || 'Manager',
-    userRole: req.userRole?.name || 'Cashier',
-    action: 'customer.create',
-    module: 'customers',
-    entityType: 'customer',
-    entityId: customer.id,
-    description: `إضافة عميل جديد: [${customer.name}]`,
-    status: 'success'
-  });
-
-  db.persist();
-
-  res.status(201).json({ success: true, customer });
+customersRouter.post('/', requirePermission('customers','create'), async (req: AuthenticatedRequest, res) => {
+  const b=req.body;
+  if (!b.name || !b.phone) return res.status(400).json({ error:'اسم العميل ورقم الهاتف مطلوبان' });
+  const { data, error } = await supabase.from('customers').insert({
+    name:b.name,name_en:b.nameEn||null,phone:b.phone,email:b.email||null,address:b.address||null,
+    tax_number:b.taxNumber||null,balance:Number(b.currentBalance||0),notes:b.notes||null,
+    branch_id:b.branchId||req.activeBranchId
+  }).select().single();
+  if(error) return res.status(500).json({error:error.message});
+  res.status(201).json({success:true,customer:data});
 });
 
-// Settle customer debt / payment
-customersRouter.post('/:id/payment', requirePermission('customers', 'edit'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const state = db.getState();
-  const customer = state.customers.find(c => c.id === req.params.id && c.tenantId === tenantId);
-
-  if (!customer) {
-    return res.status(404).json({ error: 'العميل غير موجود' });
-  }
-
-  const { amount, notes } = req.body;
-  const payAmt = Number(amount || 0);
-
-  if (payAmt <= 0) {
-    return res.status(400).json({ error: 'المبلغ يجب أن يكون أكبر من الصفر' });
-  }
-
-  customer.currentBalance = Math.max(0, customer.currentBalance - payAmt);
-
-  db.logAudit({
-    tenantId,
-    userId: req.user?.id || 'sys',
-    userName: req.user?.fullName || 'Manager',
-    userRole: req.userRole?.name || 'Accountant',
-    action: 'customer.payment',
-    module: 'customers',
-    entityType: 'customer',
-    entityId: customer.id,
-    description: `سداد دفعة من رصيد العميل [${customer.name}] بمبلغ ${payAmt.toFixed(2)}. الرصيد المتبقي: ${customer.currentBalance.toFixed(2)}`,
-    status: 'success'
-  });
-
-  db.persist();
-
-  res.json({ success: true, message: 'تم تسجيل الدفعة بنجاح', customer });
+customersRouter.post('/:id/payment', requirePermission('customers','edit'), async (req,res)=>{
+  const amount=Number(req.body.amount||0); if(amount<=0)return res.status(400).json({error:'المبلغ يجب أن يكون أكبر من الصفر'});
+  const {data:c,error:e}=await supabase.from('customers').select('balance').eq('id',req.params.id).single();
+  if(e)return res.status(404).json({error:'العميل غير موجود'});
+  const {data,error}=await supabase.from('customers').update({balance:Math.max(0,Number(c.balance||0)-amount)}).eq('id',req.params.id).select().single();
+  if(error)return res.status(500).json({error:error.message});
+  res.json({success:true,customer:data});
 });
