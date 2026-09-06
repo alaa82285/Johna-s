@@ -1,32 +1,13 @@
 import { Router } from 'express';
-import { db } from '../db/store';
+import { supabase } from '../db/supabase';
 import { AuthenticatedRequest, requirePermission } from '../db/rls';
-
-export const auditRouter = Router();
-
-// GET Audit Logs
-auditRouter.get('/', requirePermission('audit_logs', 'view'), (req: AuthenticatedRequest, res) => {
-  const tenantId = req.tenant!.id;
-  const { module, status, search, limit } = req.query;
-
-  let logs = db.getState().auditLogs.filter(l => l.tenantId === tenantId);
-
-  if (module) {
-    logs = logs.filter(l => l.module === module);
-  }
-  if (status) {
-    logs = logs.filter(l => l.status === status);
-  }
-  if (search) {
-    const q = (search as string).toLowerCase();
-    logs = logs.filter(l => 
-      l.description.toLowerCase().includes(q) || 
-      l.userName.toLowerCase().includes(q) || 
-      l.action.toLowerCase().includes(q) ||
-      (l.entityNumber && l.entityNumber.toLowerCase().includes(q))
-    );
-  }
-
-  const maxItems = limit ? parseInt(limit as string, 10) : 300;
-  res.json({ logs: logs.slice(0, maxItems) });
+export const auditRouter=Router();
+auditRouter.get('/',requirePermission('audit_logs','view'),async(req:AuthenticatedRequest,res)=>{
+ let q=supabase.from('audit_logs').select('*').order('created_at',{ascending:false}).limit(Number(req.query.limit||300));
+ if(req.tenant?.id)q=q.eq('organization_id',req.tenant.id);
+ if(req.query.module)q=q.eq('module',req.query.module);
+ if(req.query.status)q=q.eq('status',req.query.status);
+ const {data,error}=await q;if(error)return res.status(500).json({error:error.message});
+ const search=String(req.query.search||'').toLowerCase();const logs=search?(data||[]).filter((x:any)=>JSON.stringify(x).toLowerCase().includes(search)):data||[];
+ res.json({logs});
 });
