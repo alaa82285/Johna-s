@@ -14,9 +14,7 @@ import { customersRouter } from './server/routes/customers';
 import { usersRouter } from './server/routes/users';
 import { reportsRouter } from './server/routes/reports';
 import { auditRouter } from './server/routes/audit';
-import { securityTestRouter } from './server/routes/security-test';
 import { settingsRouter } from './server/routes/settings';
-import { printersRouter } from './server/routes/printers';
 
 async function startServer() {
   // Supabase/PostgreSQL is mandatory. No local JSON database fallback.
@@ -53,9 +51,7 @@ async function startServer() {
   app.use('/api/users', usersRouter);
   app.use('/api/reports', reportsRouter);
   app.use('/api/audit', auditRouter);
-  app.use('/api/security', securityTestRouter);
   app.use('/api/settings', settingsRouter);
-  app.use('/api/printers', printersRouter);
 
   // Vite development middleware vs production static bundle
   if (process.env.NODE_ENV !== 'production') {
